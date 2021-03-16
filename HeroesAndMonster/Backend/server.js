@@ -67,6 +67,7 @@ app.post("/pushHeroes", (req, res) => {
     })
     .catch((err) => res.status(500).jsonp({ error: err.message }));
 });
+
 /**Controller ------ Monsters*/
 app.get("/AllMonsters", (req, response) => {
   readJsonFile(dbpathMonsters)
