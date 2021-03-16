@@ -2,8 +2,8 @@ import Personnage from "./Personnage.js";
 
 class Heroes extends Personnage {
   #inventaire = [];
-  constructor(inventaire) {
-    super(id, nom, img, att, def);
+  constructor(id, nom, img, pointDevie, att, def, inventaire) {
+    super(id, nom, img, pointDevie, att, def);
     this.#inventaire = inventaire;
   }
   get inventaire() {

@@ -1,10 +1,10 @@
-// import Personnage from "./Personnage";
+import Personnage from "./Personnage";
 
-// class Monster extends Personnage {
-//   #or;
-//   #cuire;
-//   #baton;
-//   constructor() {
-//     super(id, nom, img, att, def);
-//   }
-// }
+class Monster extends Personnage {
+  #or;
+  #cuire;
+  #baton;
+  constructor() {
+    super(id, nom, img, att, def);
+  }
+}

@@ -1,39 +1,43 @@
-import Heroes from "./Model/Personnage/Personnage.js";
-import Personnage from "./Model/Personnage/Personnage.js";
+import Heroes from "./Model/Personnage/Heroes.js";
 
-// fetch("http://localhost:8080/fichier")
-//   .then(
-//     (response) => response.json()
-//     //   loading(data);
-//   )
-//   .then((data) => loading(data.information))
-//   .catch((err) => console.log(err));
+fetch("http://localhost:8080/AllHeroes")
+  .then((response) => response.json())
+  .then((data) => loading(data.Heroes))
+  .catch((err) => console.log(err));
 
-// let perso = [];
-// function loading(data) {
-//   const perso1 = new Personnage(
-//     data.id,
-//     data.nom,
-//     data.img,
-//     data.att,
-//     data.def
-//   );
-//   console.log(perso1);
+const choicePerso = (data, tabId) => {
+  const id = tabId[tabId.length - 1];
+  const idHeroes = data[id - 1];
+  const choix = new Heroes(
+    idHeroes.id,
+    idHeroes.nom,
+    idHeroes.img,
+    idHeroes.pointDevie,
+    idHeroes.att,
+    idHeroes.def,
+    idHeroes.Inventaire
+  );
+  return choix;
+};
 
-//   data.forEach((element, index) => {
-//     perso[index] = new Personnage(
-//       element.id,
-//       element.nom,
-//       element.img,
-//       element.img,
-//       element.att,
-//       element.def
-//     );
-//   });
-//   console.log(perso[0]);
-// }
-
-// import Personnage from "./Personnage";
-
-let demo = new Heroes();
-console.log("je suis ici", demo);
+const loading = (data) => {
+  const tab = [];
+  data.forEach((item) => {
+    const div = document.createElement("div");
+    const img = document.createElement("img");
+    img.src = item.img;
+    img.alt = item.nom;
+    img.setAttribute("id", item.id);
+    img.setAttribute("class", "image-heroes");
+    div.appendChild(img);
+    document.querySelector(".containerHeroes").appendChild(div);
+    img.addEventListener("click", () => {
+      console.log(data);
+      tab.push(img.id);
+    });
+  });
+  document.querySelector(".btnValider").addEventListener("click", function () {
+    this.disabled = "true";
+    choicePerso(data, tab);
+  });
+};
