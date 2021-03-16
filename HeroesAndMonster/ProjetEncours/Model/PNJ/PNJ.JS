@@ -1,0 +1,4 @@
+class PNJ {
+  #nom;
+  #prenom;
+}
